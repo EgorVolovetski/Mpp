@@ -1,9 +1,15 @@
 require 'nokogiri'
 require 'open-uri'
 
-doc = Nokogiri::HTML(URI.open('https://www.hospitalsafetygrade.org/all-hospitals'))
+print ("Enter a site u want to parse\nExample: https://www.hospitalsafetygrade.org/all-hospitals\n-> ")
+url = gets.chomp
 
-titles = doc.css(".content")
+doc = Nokogiri::HTML(URI.open(url))
+
+print ("Enter a class u want to parse on this site\nExample: content\n->")
+classs = gets.chomp
+
+titles = doc.css("."+classs)
 
 titles.each do |title|
   puts title.text.strip
